@@ -1,0 +1,166 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI;
+
+/**
+ *
+ * @author lifka
+ */
+
+import NapakalakiGame.CombatResult;
+import NapakalakiGame.Napakalaki;
+import java.awt.Color;
+
+
+
+public class NapakalakiView extends javax.swing.JFrame {
+
+    private Napakalaki napakalakiModel;
+    
+    public NapakalakiView() {
+        initComponents();
+    }
+    
+    public void setNapakalaki(Napakalaki game){
+        napakalakiModel = game;
+      //  playerView1.setNapakalaki(napakalakiModel); 
+        
+        //monsterView1.setMonster(napakalakiModel.getCurrentMonster());
+       // playerView1.setPlayer(napakalakiModel.getCurrentPlayer());
+        
+    }
+    
+    public void showView() {
+        this.setVisible(true);
+    }
+    
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+
+        meet = new javax.swing.JButton();
+        combatResult = new java.awt.Label();
+        combat = new javax.swing.JButton();
+        next = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        meet.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
+        meet.setText("¡Meet the Monster!");
+        meet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        meet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meetActionPerformed(evt);
+            }
+        });
+
+        combatResult.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        combat.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
+        combat.setText("¡Combat!");
+        combat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        combat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combatActionPerformed(evt);
+            }
+        });
+
+        next.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
+        next.setText("Next turn");
+        next.setActionCommand("next");
+        next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combatResult, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(meet, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(combat, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(combatResult, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(meet)
+                .addGap(18, 18, 18)
+                .addComponent(combat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(next)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void meetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetActionPerformed
+
+    }//GEN-LAST:event_meetActionPerformed
+
+    private void combatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatActionPerformed
+        CombatResult result = napakalakiModel.getCurrentPlayer().combat(napakalakiModel.getCurrentMonster());
+
+        switch (result) {
+            case Win:
+            combatResult.setText("¡Has derrotado a " + napakalakiModel.getCurrentMonster().getName() + "!");
+            combatResult.setForeground(Color.green);
+            break;
+
+            case WinAndWinGame:
+            combatResult.setText("¡Has ganado el combate y el juego! ¡Enhorabuena!");
+            combatResult.setForeground(Color.green);
+            break;
+
+            case Lose:
+            combatResult.setText("Has perdido el combate");
+            combatResult.setForeground(Color.red);
+            break;
+
+            case LoseAndDie:
+            combatResult.setText("Has perdido el combate y has muerto");
+            combatResult.setForeground(Color.red);
+            break;
+
+            case LoseAndEscape:
+            combatResult.setText("Has logrado escapar del combate...");
+            combatResult.setForeground(Color.gray);
+            break;
+
+            default:
+            combatResult.setText("Error en el combate.");
+            combatResult.setForeground(Color.red);
+            break;        // TODO add your handling code here:
+        }
+    }//GEN-LAST:event_combatActionPerformed
+
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextActionPerformed
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton combat;
+    private java.awt.Label combatResult;
+    private javax.swing.JButton meet;
+    private javax.swing.JButton next;
+    // End of variables declaration//GEN-END:variables
+}
